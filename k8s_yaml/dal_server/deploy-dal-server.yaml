@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dal-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: dal-server
+  template:
+    metadata:
+      labels:
+        name: dal-server
+    spec:
+      containers:
+      - name: dal-server
+        image: docker.io/solhope24/dal-server:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: MONGODB_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: MONGODB_DATABASE
+        - name: MONGODB_USER
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: MONGODB_USER
+        - name: MONGODB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-secret
+              key: MONGODB_PASSWORD

@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from dal import MongoDAL
+from .dal import MongoDAL
 
 class MyAPI:
 
@@ -7,6 +7,7 @@ class MyAPI:
         self.dal = dal
         self.app = FastAPI()
         self._register_routes()
+
 
     def _register_routes(self) -> None:
         @self.app.get("/health")

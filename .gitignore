@@ -1,2 +1,1 @@
-.env
-mongodb/yaml_files/secret-mongodb.yaml
+k8s_yaml/secret-mongodb.yaml
